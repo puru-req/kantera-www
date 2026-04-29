@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>株式会社KANTERA — アセスメントの力で、未来を明るく照らす。</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #DDD4BE;
+      --bg-dark:  #1F1D1B;
+      --text:     #1F1D1B;
+      --sub:      #6B6058;
+      --border:   rgba(31,29,27,0.15);
+      --white:    #FFFFFF;
+      --sans: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 52px; height: 68px;
+      background: rgba(221,212,190,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--sub);
+      font-size: 13px; letter-spacing: 0.06em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--bg-dark); color: var(--white);
+      border: none; padding: 10px 24px; border-radius: 2px;
+      font-size: 13px; font-family: var(--sans);
+      letter-spacing: 0.06em; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.75; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 120px 80px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--sub); margin-bottom: 36px;
+    }
+    .hero-headline {
+      font-size: clamp(48px, 6.5vw, 84px);
+      font-weight: 700; line-height: 1.12;
+      letter-spacing: -0.025em;
+      white-space: nowrap;
+      margin-bottom: 36px;
+    }
+    .hero-headline .light { font-weight: 300; color: var(--sub); }
+    .hero-sub {
+      font-size: 16px; color: var(--sub);
+      max-width: 460px; line-height: 1.9; margin-bottom: 52px;
+    }
+    .hero-actions { display: flex; gap: 12px; }
+    .btn-primary {
+      background: var(--bg-dark); color: var(--white);
+      padding: 13px 32px; border-radius: 2px; border: none;
+      font-size: 13px; font-family: var(--sans);
+      letter-spacing: 0.07em; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.75; }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      padding: 13px 32px; border-radius: 2px;
+      border: 1px solid var(--border);
+      font-size: 13px; font-family: var(--sans);
+      letter-spacing: 0.07em; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: border-color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--text); }
+
+    /* Hero lantern deco */
+    .hero-deco {
+      position: absolute; right: 60px; top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .hero-deco svg { width: 480px; height: 480px; }
+
+    /* ─── DIVIDER ─── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 80px; }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 96px 80px; }
+    .s-label {
+      font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--sub); margin-bottom: 24px;
+    }
+    .s-title {
+      font-size: clamp(26px, 3vw, 42px);
+      font-weight: 600; line-height: 1.2; letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+    .s-lead { font-size: 15px; color: var(--sub); max-width: 520px; line-height: 1.9; }
+
+    /* ─── VISION ─── */
+    .vision { background: var(--bg-dark); color: var(--white); }
+    .vision .s-label { color: rgba(255,255,255,0.32); }
+    .vision .s-title { color: var(--white); white-space: nowrap; font-weight: 500; }
+    .vision-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; margin-top: 60px; align-items: start;
+    }
+    .vision-statement {
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 300; line-height: 1.85;
+      color: rgba(255,255,255,0.82);
+    }
+    .vision-statement strong { font-weight: 600; color: var(--white); }
+    .vision-pillars { display: flex; flex-direction: column; gap: 32px; }
+    .pillar { border-left: 1px solid rgba(255,255,255,0.16); padding-left: 24px; }
+    .pillar-name {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.36); margin-bottom: 10px;
+    }
+    .pillar-body { font-size: 14px; color: rgba(255,255,255,0.68); line-height: 1.8; }
+
+    /* ─── SERVICES ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-top: 56px;
+    }
+    .service-card {
+      background: rgba(255,255,255,0.45);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 36px 32px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .service-card:hover {
+      box-shadow: 0 8px 32px rgba(31,29,27,0.08);
+      transform: translateY(-2px);
+    }
+    .service-num {
+      font-size: 11px; letter-spacing: 0.14em;
+      color: var(--sub); margin-bottom: 20px;
+    }
+    .service-icon {
+      width: 44px; height: 44px;
+      background: var(--bg); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-icon svg { width: 22px; height: 22px; }
+    .service-name {
+      font-size: 17px; font-weight: 600;
+      margin-bottom: 12px; letter-spacing: -0.01em;
+    }
+    .service-desc { font-size: 14px; color: var(--sub); line-height: 1.8; }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; margin-top: 56px; align-items: start;
+    }
+    .about-copy { font-size: 15px; color: var(--sub); line-height: 1.95; }
+    .about-table { width: 100%; border-collapse: collapse; }
+    .about-table tr { border-top: 1px solid var(--border); }
+    .about-table tr:last-child { border-bottom: 1px solid var(--border); }
+    .about-table th {
+      text-align: left; padding: 16px 0 16px 4px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; color: var(--sub);
+      white-space: nowrap; width: 120px;
+    }
+    .about-table td { padding: 16px 0; font-size: 14px; line-height: 1.7; }
+
+    /* ─── CONTACT ─── */
+    .contact { background: var(--bg-dark); color: var(--white); text-align: center; }
+    .contact .s-label { color: rgba(255,255,255,0.32); }
+    .contact .s-title { color: var(--white); white-space: nowrap; font-weight: 500; margin: 0 auto 20px; }
+    .contact .s-lead { color: rgba(255,255,255,0.55); margin: 0 auto 48px; text-align: center; }
+    .contact-btn {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: var(--white);
+      padding: 16px 52px; border-radius: 2px;
+      font-size: 14px; font-family: var(--sans);
+      letter-spacing: 0.1em; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .contact-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); }
+    .contact-note { margin-top: 20px; font-size: 11px; color: rgba(255,255,255,0.28); letter-spacing: 0.06em; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg-dark);
+      padding: 40px 80px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { text-decoration: none; display: flex; align-items: center; }
+    .footer-logo img { height: 44px; width: auto; display: block; }
+    .footer-tagline { font-size: 11px; color: rgba(255,255,255,0.24); margin-top: 6px; letter-spacing: 0.05em; }
+    .footer-links { display: flex; gap: 28px; list-style: none; }
+    .footer-links a {
+      text-decoration: none; color: rgba(255,255,255,0.32);
+      font-size: 12px; letter-spacing: 0.05em; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.24); letter-spacing: 0.04em; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      section { padding: 64px 24px; }
+      .hero { padding: 100px 24px 64px; }
+      .hero-deco { display: none; }
+      .divider { margin: 0 24px; }
+      .vision-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .hero-headline { white-space: normal; font-size: clamp(36px, 9vw, 56px); }
+      .vision .s-title, .contact .s-title { white-space: normal; }
+      footer { flex-direction: column; gap: 24px; padding: 40px 24px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="kantera_logo.png" alt="KANTERA">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#vision">ビジョン</a></li>
+    <li><a href="#services">事業内容</a></li>
+    <li><a href="#about">会社概要</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">お問い合わせ</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">KANTERA Inc. — 総合アセスメントカンパニー</p>
+  <h1 class="hero-headline">
+    アセスメントの力で、<br><span class="light">未来を明るく照らす。</span>
+  </h1>
+  <p class="hero-sub">
+    「ヒト」と「組織」のより良い未来を創造する総合アセスメントカンパニー。
+    あらゆる「感覚」や「違和感」を可視化し、確かな意思決定を支えます。
+  </p>
+  <div class="hero-actions">
+    <a href="#services" class="btn-primary">事業内容を見る</a>
+    <a href="#contact" class="btn-ghost">お問い合わせ</a>
+  </div>
+
+  <div class="hero-deco" aria-hidden="true">
+    <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#E8B84B" stop-opacity="0.28"/>
+          <stop offset="40%"  stop-color="#D49A2A" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#C07810" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#F5D070" stop-opacity="0.18"/>
+          <stop offset="50%"  stop-color="#E0A830" stop-opacity="0.07"/>
+          <stop offset="100%" stop-color="#C07810" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glow3" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#FFF0A0" stop-opacity="0.10"/>
+          <stop offset="100%" stop-color="#E8C040" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- 外縁の広がり -->
+      <ellipse cx="260" cy="240" rx="230" ry="210" fill="url(#glow2)"/>
+      <!-- 中間の光 -->
+      <ellipse cx="260" cy="240" rx="150" ry="140" fill="url(#glow1)"/>
+      <!-- コアの輝き -->
+      <ellipse cx="260" cy="240" rx="80"  ry="75"  fill="url(#glow3)"/>
+    </svg>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- VISION -->
+<section class="vision" id="vision">
+  <p class="s-label">Vision &amp; Mission</p>
+  <h2 class="s-title">なぜ、KANTERAは存在するのか</h2>
+  <div class="vision-grid">
+    <div class="vision-statement">
+      経験や直感に頼るだけでは、<strong>「見えていないもの」</strong>は見えないまま残る。<br><br>
+      人材・組織・事業・安全——あらゆる領域の「違和感」や「リスク」を言語化・数値化し、<strong>より良い意思決定へとつなぐ。</strong><br><br>
+      それがKANTERAの存在意義です。
+    </div>
+    <div class="vision-pillars">
+      <div class="pillar">
+        <div class="pillar-name">Illuminate — 照らす</div>
+        <div class="pillar-body">ランタンが暗い道を照らすように、見えていないリスクや可能性を光で照らし出す。KANTERA（燈）の名はそこに由来します。</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Visualize — 可視化する</div>
+        <div class="pillar-body">「なんとなく感じる違和感」「うまくいかない組織の空気」——勘と経験の中にある本質を、データと構造で言語化します。</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Empower — 強くする</div>
+        <div class="pillar-body">個人の善意や属人的な判断に頼る組織から、仕組みで動く組織へ。アセスメントが組織全体の意思決定力を高めます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="s-label">Our Services</p>
+  <h2 class="s-title">主なアセスメント事業</h2>
+  <p class="s-lead">採用・定着・組織・新規事業・こどもの安全・AI活用まで。「見えない課題」を可視化するアセスメントを複数展開しています。</p>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="8" height="8" rx="1.5" stroke="#1F1D1B" stroke-width="1.5"/>
+          <rect x="12" y="2" width="8" height="8" rx="1.5" stroke="#1F1D1B" stroke-width="1.5"/>
+          <rect x="2" y="12" width="8" height="8" rx="1.5" stroke="#1F1D1B" stroke-width="1.5"/>
+          <rect x="12" y="12" width="8" height="8" rx="1.5" stroke="#1F1D1B" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="service-name">組織力向上アセスメント</div>
+      <div class="service-desc">組織の構造・文化・コミュニケーションの健全性を多面的に可視化。感覚ではなく、データで組織の課題を特定します。</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="7.5" r="3.5" stroke="#1F1D1B" stroke-width="1.5"/>
+          <path d="M3 18c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="#1F1D1B" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="2.5" stroke="#1F1D1B" stroke-width="1.5"/>
+          <path d="M20 20l1.5 1.5" stroke="#1F1D1B" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="service-name">採用力アセスメント</div>
+      <div class="service-desc">採用活動の構造・数値・運用プロセスの詰まり箇所を特定。「なぜ良い人材が来ないのか」を構造として明らかにします。</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="5" r="2.5" stroke="#1F1D1B" stroke-width="1.5"/>
+          <path d="M11 7.5V19" stroke="#1F1D1B" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M5 14c0 0 2 5 6 5s6-5 6-5" stroke="#1F1D1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="service-name">社員定着アセスメント</div>
+      <div class="service-desc">離職意向と相関する要因を構造的に可視化。「なんとなく辞めそう」を言語化し、定着施策を科学的に設計します。</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 2C11 2 15 5 15 11C15 14.5 13.5 17.5 11 19.5C8.5 17.5 7 14.5 7 11C7 5 11 2 11 2Z" stroke="#1F1D1B" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="11" cy="11" r="2" stroke="#1F1D1B" stroke-width="1.5"/>
+          <path d="M7 15L4 18M15 15L18 18" stroke="#1F1D1B" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="service-name">新規事業創出力アセスメント</div>
+      <div class="service-desc">組織・個人の事業創出ポテンシャルを可視化。「うちは新規事業が育たない」の原因を構造として捉え直します。</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 2L3 5.5V11C3 15.1 6.6 18.9 11 20C15.4 18.9 19 15.1 19 11V5.5L11 2Z" stroke="#1F1D1B" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M8 11L10.5 13.5L14.5 9" stroke="#1F1D1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="service-name">こども関連業務適合アセスメント</div>
+      <div class="service-desc">子どもと接する職場での個人のリスク傾向を可視化。採用時・在職中の継続的なアセスメントで、安全な現場をつくります。</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="8.5" stroke="#1F1D1B" stroke-width="1.5"/>
+          <circle cx="11" cy="11" r="3" stroke="#1F1D1B" stroke-width="1.5"/>
+          <path d="M11 2.5V6M11 16v3.5M2.5 11H6M16 11h3.5" stroke="#1F1D1B" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M5.1 5.1l2.5 2.5M14.4 14.4l2.5 2.5M16.9 5.1l-2.5 2.5M7.6 14.4l-2.5 2.5" stroke="#1F1D1B" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="service-name">AI活用推進アセスメント</div>
+      <div class="service-desc">AI活用に向けた組織・人材の準備状況を可視化。「推進できる人材がいない」「活用が定着しない」の原因を構造として捉え、AI推進力を高めます。</div>
+    </div>
+
+  </div>
+  <p style="margin-top: 40px; font-size: 12px; color: var(--sub); text-align: center; letter-spacing: 0.08em;">※ 上記のほか、複数のアセスメントを現在開発・準備中です。</p>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="s-label">Company</p>
+  <h2 class="s-title">会社概要</h2>
+  <div class="about-grid">
+    <div class="about-copy">
+      株式会社KANTERAは、「ヒト」と「組織」の可能性を最大化するために設立された総合アセスメントカンパニーです。<br><br>
+      採用・定着・組織開発・事業創出・こどもの安全など、様々な領域における「見えない課題」を独自のアセスメントメソッドで可視化し、組織の意思決定を支援します。<br><br>
+      私たちは、「なんとなくの感覚」「現場の違和感」を丁寧に言語化・数値化することで、より良い組織と社会の実現を目指しています。
+    </div>
+    <table class="about-table">
+      <tr>
+        <th>会社名</th>
+        <td>株式会社KANTERA</td>
+      </tr>
+      <tr>
+        <th>代表取締役</th>
+        <td>鈴木 雄太</td>
+      </tr>
+      <tr>
+        <th>事業内容</th>
+        <td>総合アセスメントの設計・提供<br>各種コンサルティング</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="s-label">Contact</p>
+  <h2 class="s-title">まず、話を聞いてみませんか</h2>
+  <p class="s-lead">資料のご送付・デモのご案内・ご相談など、お気軽にご連絡ください。</p>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfsTrLbrE1u3scHcZS_BZP06HvM985VYJ6jrg1Pr17A3iT9cA/viewform" class="contact-btn">
+    お問い合わせフォームへ →
+  </a>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a class="footer-logo" href="#">
+      <img src="kantera_logo_w.png" alt="KANTERA">
+    </a>
+    <div class="footer-tagline">アセスメントの力で、未来を明るく照らす。</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#vision">ビジョン</a></li>
+    <li><a href="#services">事業内容</a></li>
+    <li><a href="#about">会社概要</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 KANTERA, Inc. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
